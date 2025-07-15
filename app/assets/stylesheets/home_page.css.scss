@@ -2,7 +2,21 @@ html {
   background-color: #191919;
 }
 
-p {
-  color: #FFFFFF;
-  opacity: 0.81;
+.content-wrapper {
+  .home-body {
+    .title-container {
+      .icon-title {
+        display: flex;
+        flex-direction: row;
+        svg {
+          width: 36px;
+          height: 36px;
+        }
+      }
+      .document-title, .document-sub-title {
+        color: #FFFFFF;
+        opacity: 0.81;
+      }
+    }
+  }
 }
