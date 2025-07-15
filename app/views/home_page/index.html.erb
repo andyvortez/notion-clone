@@ -4,12 +4,45 @@
       <section class="title-container">
         <div class="icon-title">
           <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 64 64"><defs fill="#CD4945" /><path  d="m30,30h22v26H12V8h18v22Zm8-22h-4v18h18v-4l-14-14Z" fill="#CD4945" /></svg>
-          <header class="document-title">Developer Ticket Documentation
+          <header class="document-title">Developer Ticket Docs
           </header>
         </div>
         <div class="document-sub-title">Organize documents for transparent team communication.
         </div>
       </section>
     </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Issue</th>
+          <th scope="col">Documentation</th>
+          <th scope="col">Developer</th>
+          <th scope="col">Story Points</th>
+          <th scope="col">Accurate?</th>
+          <th scope="col">Commit URL</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
+      <tbody class="body">
+        <% @tickets.each do |t| %>
+          <tr>
+            <th scope="row"><%= t.id %></th>
+            <td><%= t.ticket_name %></td>
+            <td><%= t.issue %></td>
+            <td><%= t.documentation %></td>
+            <td><%= t.developer %></td>
+            <td><%= t.story_points %></td>
+            <td><%= t.accurate %></td>
+            <td><%= t.commit %></td>
+            <td><%= t.created_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to "New Ticket", '/tickets/new', class: "new-ticket-btn" %>
   </div>
 </div>
+

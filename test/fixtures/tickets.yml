@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ticket_name: MyString
+  issue: MyText
+  documentation: MyText
+  developer: 1
+  story_points: 1
+  accurate: false
+  commit: MyText
+
+two:
+  ticket_name: MyString
+  issue: MyText
+  documentation: MyText
+  developer: 1
+  story_points: 1
+  accurate: false
+  commit: MyText

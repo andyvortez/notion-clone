@@ -11,4 +11,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home_page#index"
+
+  resources :tickets
 end
