@@ -1,0 +1,6 @@
+<div class="all-tickets">
+  <% @tickets.each do |t| %>
+    <div class="name"><%= t.ticket_name %></div>
+    <div class="issue"><%= t.issue %></div><br>
+  <% end %>
+</div>

@@ -1,8 +1,14 @@
-html {
-  background-color: #191919;
+html, body {
+  background-color: #191919 !important;
+}
+
+* {
+  color: rgba(255, 255, 255, 0.81);
 }
 
 .content-wrapper {
+  padding: 20px;
+  padding-left: calc(96px + env(safe-area-inset-left));
   .home-body {
     .title-container {
       .icon-title {
@@ -13,10 +19,39 @@ html {
           height: 36px;
         }
       }
-      .document-title, .document-sub-title {
-        color: #FFFFFF;
-        opacity: 0.81;
+
+      .document-title {
+        font-size: 2em;
+        font-weight: 700;
       }
     }
   }
+  .table {
+    background-color: #191919 !important;
+    border-collapse: collapse;
+  
+    td, th, tr {
+      background-color: #191919 !important;
+      color: rgba(255, 255, 255, 0.81) !important;
+      border-color: #2F2F2F !important;
+    }
+  }
+
+  .new-ticket-btn {
+    display: inline-flex;
+    padding: 10px 20px;
+    background-color: none;
+    border: 1px solid #2F2F2F;
+    border-radius: 6px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.282);
+    transition: opacity 0.2;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      opacity: 20%;
+      color: rgba(255, 255, 255, 0.882);
+    }
+  }
 }
+
