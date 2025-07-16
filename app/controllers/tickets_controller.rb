@@ -20,7 +20,7 @@ class TicketsController < ApplicationController
   def update
     @ticket = Ticket.find(params[:id])
     if @ticket.update(ticket_params)
-      redirect_to @ticket, notice: 'Ticket updated!'
+      redirect_to root_path, notice: 'Ticket updated!'
     else 
       render :edit
     end
@@ -32,6 +32,8 @@ class TicketsController < ApplicationController
 
   def destroy
     @ticket = Ticket.find(params[:id]).destroy!
+    flash[:success] = "The ticket has been destroyed."
+    redirect_to root_path
   end
   
   def show

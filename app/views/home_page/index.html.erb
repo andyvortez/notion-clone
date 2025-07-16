@@ -14,6 +14,7 @@
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
+          <th></th>
           <th scope="col">#</th>
           <th scope="col">Title</th>
           <th scope="col">Issue</th>
@@ -27,16 +28,23 @@
       </thead>
       <tbody class="body">
         <% @tickets.each do |t| %>
-          <tr>
+          <tr class="ticket-row">
+            <td class="action-cell">
+              <%= link_to "✖", ticket_path(t), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete-btn" %>
+            </td>
             <th scope="row"><%= t.id %></th>
-            <td><%= t.ticket_name %></td>
+            <td class="full-cell-link">
+              <%= link_to edit_ticket_path(t), class: "cell-link" do %>
+                <%= t.ticket_name %>
+              <% end %>
+            </td>
             <td><%= t.issue %></td>
             <td><%= t.documentation %></td>
             <td><%= t.developer %></td>
             <td><%= t.story_points %></td>
             <td><%= t.accurate %></td>
             <td><%= t.commit %></td>
-            <td><%= t.created_at %></td>
+            <td><%= t.created_at.strftime("%m/%d/%Y") %></td>
           </tr>
         <% end %>
       </tbody>
