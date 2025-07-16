@@ -1,7 +1,7 @@
 <%= form_for @ticket do |f| %>
   <div class="form-group" style="gap: 20px;">
-    <%= f.label "Ticket Name" %>
-    <%= f.text_field :ticket_name %>
+      <%= f.label "Ticket Name" %>
+      <%= f.text_field :ticket_name %>
     <br>
     <br>
     <%= f.label "Issue" %>
@@ -32,6 +32,6 @@
   </div>
   <br>
   <br>
-  <button class="btn"><%=f.submit%></button>
-  <%= link_to "Return Home", root_path, class: "new-ticket-btn" %>
+  <%= f.submit "Save", class: "save-btn" %>
+  <%= link_to "Return Home", root_path, class: "return-home" %>
 <% end %>
