@@ -15,6 +15,7 @@ class TicketsController < ApplicationController
 
   def index
     @tickets = Ticket.all
+    @grouped_tickets = Ticket.includes(:category).group_by(&:category)
   end
 
   def update
@@ -44,6 +45,6 @@ class TicketsController < ApplicationController
   private
 
   def ticket_params
-    params.require(:ticket).permit(:ticket_name, :issue, :documentation, :developer, :story_points, :accurate, :commit, :created_at)
+    params.require(:ticket).permit(:ticket_name, :issue, :documentation, :developer, :story_points, :accurate, :commit, :created_at, :category_id)
   end
 end
