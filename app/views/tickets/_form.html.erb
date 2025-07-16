@@ -28,6 +28,9 @@
     <%= f.text_field :commit %>
     <br>
     <br>
+
+    <%= f.label :category_id, "Category" %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: "Choose a category" }, { class: "form-select" } %>
     
   </div>
   <br>

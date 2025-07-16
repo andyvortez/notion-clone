@@ -11,46 +11,51 @@
         </div>
       </section>
     </div>
-    <table class="table table-bordered table-hover">
-      <thead>
-        <tr>
-          <th></th>
-          <th scope="col">#</th>
-          <th scope="col">Title</th>
-          <th scope="col">Issue</th>
-          <th scope="col">Documentation</th>
-          <th scope="col">Developer</th>
-          <th scope="col">Story Points</th>
-          <th scope="col">Accurate?</th>
-          <th scope="col">Commit URL</th>
-          <th scope="col">Date</th>
-        </tr>
-      </thead>
-      <tbody class="body">
-        <% @tickets.each do |t| %>
-          <tr class="ticket-row">
-            <td class="action-cell">
-              <%= link_to "✖", ticket_path(t), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete-btn" %>
-            </td>
-            <th scope="row"><%= t.id %></th>
-            <td class="full-cell-link">
-              <%= link_to edit_ticket_path(t), class: "cell-link" do %>
-                <%= t.ticket_name %>
-              <% end %>
-            </td>
-            <td><%= t.issue %></td>
-            <td><%= t.documentation %></td>
-            <td><%= t.developer %></td>
-            <td><%= t.story_points %></td>
-            <td><%= t.accurate %></td>
-            <td><%= t.commit %></td>
-            <td><%= t.created_at.strftime("%m/%d/%Y") %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <%= link_to "New Ticket", '/tickets/new', class: "new-ticket-btn" %>
+    <% @category.each do |c| %>
+      <div class="category-name"><%= c.name %></div>
+      <div class="category-table">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th></th>
+              <th scope="col">#</th>
+              <th scope="col">Title</th>
+              <th scope="col">Issue</th>
+              <th scope="col">Documentation</th>
+              <th scope="col">Developer</th>
+              <th scope="col">Story Points</th>
+              <th scope="col">Accurate?</th>
+              <th scope="col">Commit URL</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody class="body">
+            <% c.tickets.each do |t| %>
+              <tr class="ticket-row">
+                <td class="action-cell">
+                  <%= link_to "✖", ticket_path(t), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete-btn" %>
+                </td>
+                <th scope="row"><%= t.id %></th>
+                <td class="full-cell-link">
+                  <%= link_to edit_ticket_path(t), class: "cell-link" do %>
+                    <%= t.ticket_name %>
+                  <% end %>
+                </td>
+                <td><%= t.issue %></td>
+                <td><%= t.documentation %></td>
+                <td><%= t.developer %></td>
+                <td><%= t.story_points %></td>
+                <td><%= t.accurate %></td>
+                <td><%= t.commit %></td>
+                <td><%= t.created_at.strftime("%m/%d/%Y") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <%= link_to "New Ticket", '/tickets/new', class: "new-ticket-btn" %>
+    <% end %>
+    
   </div>
 </div>
 
