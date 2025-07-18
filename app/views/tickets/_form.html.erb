@@ -4,6 +4,10 @@
       <%= f.text_field :ticket_name %>
     <br>
     <br>
+    <%= f.label :keyword_ids, "Keywords" %>
+    <%= f.collection_select :keyword_ids, Keyword.all, :id, :keyword, { prompt: "Choose a keyword" }, { class: "form-select", multiple: true, style: "width: 120px;" } %>
+    <br>
+    <br>
     <%= f.label "Issue" %>
     <%= f.text_field :issue %>
     <br>

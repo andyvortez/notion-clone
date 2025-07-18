@@ -10,11 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_16_170451) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_16_191754) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "keywords", force: :cascade do |t|
+    t.string "keyword"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "keywords_tickets", id: false, force: :cascade do |t|
+    t.integer "ticket_id", null: false
+    t.integer "keyword_id", null: false
+    t.index ["keyword_id"], name: "index_keywords_tickets_on_keyword_id"
+    t.index ["ticket_id"], name: "index_keywords_tickets_on_ticket_id"
   end
 
   create_table "tickets", force: :cascade do |t|
