@@ -9,6 +9,8 @@ html, body {
 .content-wrapper {
   padding: 20px;
   padding-left: calc(96px + env(safe-area-inset-left));
+  display: flex;
+  flex-direction: column;
   .home-body {
     .title-container {
       margin-bottom: 20px;
@@ -27,6 +29,30 @@ html, body {
       }
     }
   }
+
+  .category-name {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 0.8em;
+    font-weight: 700;
+    height: 20px;
+    width: fit-content;
+    padding: 7px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.094);
+    margin-bottom: 10px;
+  }
+  
+  .category-2 {
+    background-color: rgba(220, 76, 145, 0.4);
+  }
+  .category-3 {
+    background-color: rgba(51, 126, 169, 0.5);
+  }
+  .category-4 {
+    background-color: rgba(233, 126, 35, 0.45);
+  }
   .table {
     background-color: #191919 !important;
     border-collapse: collapse;
@@ -37,10 +63,32 @@ html, body {
         background-color: #191919 !important;
         color: rgba(255, 255, 255, 0.81) !important;
         border-color: #2F2F2F !important;
-        width: auto;
+        width: 100px;
         max-width: 100px;
         white-space: nowrap;
         overflow: hidden;
+        font-size: 14px;
+      }
+
+      .title-header {
+        width: 360px;
+      }
+
+      .keywords-header, 
+      .issue-header,
+      .documentation-header,
+      .commit-url-header {
+        width: 180px;
+      }
+
+      .developer-header,
+      .date-header {
+        width: 150px;
+      }
+
+      .story-points-header,
+      .accurate-header {
+        width: 100px;
       }
 
       .action-cell {
@@ -79,6 +127,7 @@ html, body {
 
   .new-ticket-btn {
     display: inline-flex;
+    width: fit-content;
     padding: 5px 15px;
     background-color: none;
     border: 1px solid #2F2F2F;
