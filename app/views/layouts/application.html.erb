@@ -24,6 +24,8 @@
     <% if alert %>
       <p class="alert"><%= alert %></p>
     <% end %>
+
+    <%= turbo_frame_tag "modal" %>
     
     <%= yield %>
   </body>

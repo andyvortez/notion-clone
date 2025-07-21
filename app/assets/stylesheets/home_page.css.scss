@@ -12,6 +12,11 @@ html, body {
   display: flex;
   flex-direction: column;
   .home-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
     .title-container {
       margin-bottom: 20px;
       .icon-title {
@@ -27,6 +32,44 @@ html, body {
         font-size: 2em;
         font-weight: 700;
       }
+    }
+
+    .account-modal:hover {
+      cursor: pointer;
+    }
+    .logout-modal {
+      display: none;
+      position: absolute;
+      right: 3px;
+      top: 60px;
+      width: 120px;
+      height: auto;
+      color: inherit;
+      border-radius: 8px;
+      overflow: hidden;
+
+      .modal-button {
+        text-align: center;
+        font-size: 1em;
+        color: inherit;
+        padding: 10px;
+        margin: 0;
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.054);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+        border: none;
+        border-bottom: 1px solid #191919;
+        width: 100%;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.034);
+        }
+      }
+
+
+
+
     }
   }
 
