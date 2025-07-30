@@ -1,0 +1,37 @@
+<turbo-frame id="<%= frame_id %>" class="partial-field-form">
+  <%= form_with model: ticket,
+      url: ticket.persisted? ? update_field_ticket_path(ticket) : create_field_tickets_path,
+      method: ticket.persisted? ? :patch : :post,
+      data: { turbo_frame: frame_id },
+      local: false do |f| %>
+    
+    <%= hidden_field_tag :field_name, field_name %>
+    <%= hidden_field_tag :frame_id, frame_id %>
+    
+    <%# ADD THIS LINE - extract category_id from frame_id %>
+    <% if frame_id.include?('new_ticket') %>
+      <%= hidden_field_tag :category_id, frame_id.split('_').last %>
+    <% end %>
+    
+    <% case field_name %>
+    <% when 'issue' %>
+      <%= f.text_area :issue,
+          value: ticket.issue,
+          class: "field-input",
+          autofocus: true %>
+      <%= f.submit "Save", style: "display: none;", id: "auto-submit" %>
+    <% when 'documentation' %>
+      <%= f.text_area :documentation,
+          value: ticket.documentation,
+          class: "field-input",
+          autofocus: true %>
+      <%= f.submit "Save", style: "display: none;", id: "auto-submit" %>
+    <% when 'developer' %>
+      <%= f.text_field :developer,
+          value: ticket.developer,
+          class: "field-input",
+          autofocus: true %>
+      <%= f.submit "Save", style: "display: none;", id: "auto-submit" %>
+    <% end %>
+  <% end %>
+</turbo-frame>

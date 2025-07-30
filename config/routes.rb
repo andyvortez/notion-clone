@@ -15,5 +15,15 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home_page#index"
 
-  resources :tickets
+  resources :tickets do
+    collection do
+      get :new_field      # For creating new ticket fields
+      post :create_field  # For saving new ticket fields
+    end
+    
+    member do
+      get :edit_field     # For editing existing ticket fields  
+      patch :update_field # For saving existing ticket field updates
+    end
+  end
 end

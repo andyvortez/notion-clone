@@ -57,8 +57,20 @@
                     <%= k.keyword %>
                   <% end %>
                 </td>
-                <td><%= t.issue %></td>
-                <td><%= t.documentation %></td>
+                <td>
+                  <turbo-frame id="ticket_<%= t.id %>_issue">
+                    <div class="cell-display" data-controller="editable-cell" data-action="click->editable-cell#edit">
+                      <%= t.issue.present? ? t.issue : "Click to add issue" %>
+                    </div>
+                  </turbo-frame>
+                </td>
+                <td>
+                  <turbo-frame id="ticket_<%= t.id %>documentation">
+                    <div class="cell-display" data-controller="editable-cell" data-action="click->editable-cell#edit">
+                      <%= t.documentation.present? ? t.documentation : "Click to add documentation" %>
+                    </div>
+                  </turbo-frame>
+                </td>
                 <td><%= t.developer %></td>
                 <td><%= t.story_points %></td>
                 <td><%= t.accurate ? "Yes" : "No" %></td>
@@ -67,7 +79,19 @@
               </tr>
             <% end %>
             <tr data-href="<%= new_ticket_path %>" class="ticket-row empty-row">
-              <% 10.times do %>
+              <% 3.times do %>
+                <td>&nbsp;</td>
+              <% end %>
+              <td>
+                <turbo-frame id="new_ticket_issue_<%= c.id %>">
+                  <div class="cell-display"
+                      data-controller="editable-cell"
+                      data-action="click->editable-cell#edit">
+                    Click to add issue
+                  </div>
+                </turbo-frame>
+              </td>
+              <% 7.times do %>
                 <td>&nbsp;</td>
               <% end %>
             </tr>
