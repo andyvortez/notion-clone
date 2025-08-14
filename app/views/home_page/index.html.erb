@@ -47,10 +47,12 @@
                 <td class="action-cell">
                   <%= link_to "✖", ticket_path(t), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete-btn" %>
                 </td>
-                <td class="full-cell-link">
-                  <%= link_to edit_ticket_path(t), class: "cell-link" do %>
-                    <%= t.ticket_name %>
-                  <% end %>
+                <td>
+                  <turbo-frame id="ticket_<%= t.id %>_ticket_name">
+                    <div class="cell-display" data-controller="editable-cell" data-action="click->editable-cell#edit">
+                      <%= t.ticket_name.present? ? t.ticket_name : "" %>
+                    </div>
+                  </turbo-frame>
                 </td>
                 <td class="full-cell-link">
                   <% t.keywords.each do |k| %>
@@ -60,14 +62,14 @@
                 <td>
                   <turbo-frame id="ticket_<%= t.id %>_issue">
                     <div class="cell-display" data-controller="editable-cell" data-action="click->editable-cell#edit">
-                      <%= t.issue.present? ? t.issue : "Click to add issue" %>
+                      <%= t.issue.present? ? t.issue : "" %>
                     </div>
                   </turbo-frame>
                 </td>
                 <td>
-                  <turbo-frame id="ticket_<%= t.id %>documentation">
+                  <turbo-frame id="ticket_<%= t.id %>_documentation">
                     <div class="cell-display" data-controller="editable-cell" data-action="click->editable-cell#edit">
-                      <%= t.documentation.present? ? t.documentation : "Click to add documentation" %>
+                      <%= t.documentation.present? ? t.documentation : "" %>
                     </div>
                   </turbo-frame>
                 </td>
@@ -79,19 +81,35 @@
               </tr>
             <% end %>
             <tr data-href="<%= new_ticket_path %>" class="ticket-row empty-row">
-              <% 3.times do %>
+              <td>&nbsp;</td>
+              <td>
+                <turbo-frame id="new_ticket_ticket_name_<%= c.id %>">
+                  <div class="cell-display"
+                      data-controller="editable-cell"
+                      data-action="click->editable-cell#edit">
+                  </div>
+                </turbo-frame>
+              </td>
+              
                 <td>&nbsp;</td>
-              <% end %>
+          
               <td>
                 <turbo-frame id="new_ticket_issue_<%= c.id %>">
                   <div class="cell-display"
                       data-controller="editable-cell"
                       data-action="click->editable-cell#edit">
-                    Click to add issue
                   </div>
                 </turbo-frame>
               </td>
-              <% 7.times do %>
+              <td>
+                <turbo-frame id="new_ticket_documentation_<%= c.id %>">
+                  <div class="cell-display"
+                      data-controller="editable-cell"
+                      data-action="click->editable-cell#edit">
+                  </div>
+                </turbo-frame>
+              </td>
+              <% 5.times do %>
                 <td>&nbsp;</td>
               <% end %>
             </tr>
@@ -106,4 +124,6 @@
   </div>
 </div>
 
+
+# adjust the placeholder to hide and only display on hover for new
 

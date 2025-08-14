@@ -2,23 +2,24 @@
   <div class="cell-display"
        data-controller="editable-cell"
        data-action="click->editable-cell#edit"
+       data-ticket-id="<%= ticket_id %>"
        <% if ticket.errors[field_name].any? %>
          style="border: 1px solid red;"
        <% end %>>
     
     <% case field_name %>
     <% when 'issue' %>
-      <%= ticket.issue.present? ? ticket.issue : "Click to add issue" %>
+      <%= ticket.issue.present? ? ticket.issue : "\u00a0" %>
     <% when 'documentation' %>
-      <%= ticket.documentation.present? ? ticket.documentation : "Click to add documentation" %>
+      <%= ticket.documentation.present? ? ticket.documentation : "\u00a0" %>
     <% when 'developer' %>
-      <%= ticket.developer.present? ? ticket.developer : "Click to add developer" %>
+      <%= ticket.developer.present? ? ticket.developer : "\u00a0" %>
     <% when 'ticket_name' %>
-      <%= ticket.ticket_name.present? ? ticket.ticket_name : "Click to add title" %>
+      <%= ticket.ticket_name.present? ? ticket.ticket_name : "\u00a0" %>
     <% when 'story_points' %>
-      <%= ticket.story_points.present? ? ticket.story_points : "Click to add story points" %>
+      <%= ticket.story_points.present? ? ticket.story_points : "\u00a0" %>
     <% when 'commit' %>
-      <%= ticket.commit.present? ? ticket.commit : "Click to add commit URL" %>
+      <%= ticket.commit.present? ? ticket.commit : "\u00a0" %>
     <% end %>
   </div>
 </turbo-frame>

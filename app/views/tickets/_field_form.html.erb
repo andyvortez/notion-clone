@@ -14,23 +14,28 @@
     <% end %>
     
     <% case field_name %>
+    <% when 'ticket_name' %>
+      <%= f.text_area :ticket_name,
+        value: ticket.ticket_name,
+        autofocus: true,
+        class: "field-input inline-form-field" %>
+      <%= f.submit "Save", style: "display: none;", id: "auto-submit" %>
     <% when 'issue' %>
       <%= f.text_area :issue,
           value: ticket.issue,
-          class: "field-input",
-          autofocus: true %>
+          autofocus: true,
+          class: "field-input inline-form-field" %>
       <%= f.submit "Save", style: "display: none;", id: "auto-submit" %>
     <% when 'documentation' %>
       <%= f.text_area :documentation,
           value: ticket.documentation,
-          class: "field-input",
-          autofocus: true %>
+          autofocus: true,
+          class: "field-input inline-form-field" %>
       <%= f.submit "Save", style: "display: none;", id: "auto-submit" %>
     <% when 'developer' %>
       <%= f.text_field :developer,
           value: ticket.developer,
-          class: "field-input",
-          autofocus: true %>
+          class: "field-input inline-form-field" %>
       <%= f.submit "Save", style: "display: none;", id: "auto-submit" %>
     <% end %>
   <% end %>
