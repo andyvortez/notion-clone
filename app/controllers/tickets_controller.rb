@@ -67,7 +67,7 @@ class TicketsController < ApplicationController
   end
 
   def create_field
-    Rails.logger.info "=== CREATE FIELD DEBUG ==="
+  Rails.logger.info "=== CREATE FIELD DEBUG ==="
   Rails.logger.info "All params: #{params.inspect}"
   Rails.logger.info "Ticket params: #{ticket_params.inspect}"
   Rails.logger.info "Field name: #{params[:field_name]}"
@@ -80,12 +80,20 @@ class TicketsController < ApplicationController
   Rails.logger.info "Ticket errors before save: #{@ticket.errors.full_messages}"
     
     if @ticket.save
-      Rails.logger.info "SUCCESSS"
+      Rails.logger.info "SUCCESS - Ticket saved with ID: #{@ticket.id}"
+      puts "=========== CONSOLE DEBUG ==="
+    puts "frame_id: #{@frame_id}"
+    puts "ticket_id: #{@ticket.id}"
+    puts "About to render with ticket_id: #{@ticket.id}"
+      Rails.logger.info "Rendering with ticket_id: #{@ticket.id}"
+      puts "About to render field_display partial..."
+      
       # Success - show the saved value in display mode
-      render partial: 'field_display', locals: { 
+      render partial: 'tickets/field_display', locals: { 
         ticket: @ticket, 
         field_name: @field_name, 
-        frame_id: @frame_id 
+        frame_id: @frame_id,
+        ticket_id: @ticket.id
       }
     else
       Rails.logger.info "FAILEDDD Ticket validation errors: #{@ticket.errors.full_messages}"
@@ -106,10 +114,11 @@ class TicketsController < ApplicationController
     if @ticket.update(ticket_params)
       Rails.logger.info "SUCCESSS"
       # Success - show the updated value
-      render partial: 'field_display', locals: { 
+      render partial: 'tickets/field_display', locals: { 
         ticket: @ticket, 
         field_name: @field_name, 
-        frame_id: @frame_id 
+        frame_id: @frame_id,
+        ticket_id: @ticket.id
       }
     else
       # Error - show the form with errors
