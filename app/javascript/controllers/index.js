@@ -2,13 +2,9 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from "controllers/application"
+import EditableCellController from "controllers/editable_cell_controller"
+import ModalController from "controllers/modal_controller"
 
-import EditableCellController from "./editable_cell_controller"
 application.register("editable-cell", EditableCellController)
-
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
-
-import ModalController from "./modal_controller"
 application.register("modal", ModalController)
