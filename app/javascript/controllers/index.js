@@ -1,4 +1,4 @@
-import { application } from "controllers/application"
+import { application } from "./application"
 import EditableCellController from "./editable_cell_controller"
 import ModalController from "./modal_controller"
 
