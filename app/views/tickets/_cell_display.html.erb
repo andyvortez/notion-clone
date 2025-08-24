@@ -1,0 +1,15 @@
+
+<div class="cell-display" 
+     data-controller="editable-cell" 
+     data-action="click->editable-cell#edit"
+     data-editable-cell-field-name="<%= field_name %>"
+     <% if defined?(ticket.id) && ticket.id %>
+       data-editable-cell-ticket-id="<%= ticket.id %>"
+     <% else %>
+       data-editable-cell-category-id="<%= frame_id.split('_').last %>"
+     <% end %>
+     <% if ticket.persisted? %>
+       data-ticket-id="<%= ticket.id %>"
+     <% end %>>
+  <%= ticket.send(field_name).present? ? ticket.send(field_name) : "" %>
+</div>

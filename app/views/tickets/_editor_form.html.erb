@@ -1,0 +1,35 @@
+
+<turbo-frame id="editor-frame" class="editor-form">
+  <div class="editor-content">
+    <label class="editor-field-label">
+      <%= field_name.humanize %>
+    </label>
+    
+    <%= form_with model: ticket,
+        url: ticket.persisted? ? update_field_ticket_path(ticket) : create_field_tickets_path,
+        method: ticket.persisted? ? :patch : :post,
+        data: { turbo_frame: "editor-frame" },
+        local: false do |f| %>
+      
+      <%= hidden_field_tag :field_name, field_name %>
+      <%= hidden_field_tag :original_frame_id, params[:original_frame_id] %>
+      
+      <% if params[:category_id] %>
+        <%= hidden_field_tag :category_id, params[:category_id] %>
+      <% end %>
+      
+      <%= f.text_area field_name.to_sym,
+          value: ticket.send(field_name),
+          autofocus: true,
+          class: "editor-textarea",
+          placeholder: "Enter #{field_name.humanize.downcase}..." %>
+      
+      <div class="editor-actions">
+        <%= f.submit "Save", class: "editor-btn editor-btn-primary" %>
+        <button type="button" 
+                onclick="document.getElementById('editor-panel').style.display = 'none'"
+                class="editor-btn editor-btn-secondary">Cancel</button>
+      </div>
+    <% end %>
+  </div>
+</turbo-frame>

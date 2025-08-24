@@ -54,10 +54,16 @@
                     </div>
                   </turbo-frame>
                 </td>
-                <td class="full-cell-link">
-                  <% t.keywords.each do |k| %>
-                    <%= k.keyword %>
-                  <% end %>
+                <td>
+                  <turbo-frame id="ticket_<%= t.id %>_ticket_keywords">
+                    <div class="cell-display" style="gap: 5px; display: flex; flex-direction: row; overflow-hidden;">
+                      <% if t.keywords.present? %>
+                        <% t.keywords.each do |k| %>
+                          <span class="keyword-label" style="display: flex; padding: 0 6px; background-color: rgb(161, 80, 80); border-radius: 6px;"><%= k.keyword %></span>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </turbo-frame>
                 </td>
                 <td>
                   <turbo-frame id="ticket_<%= t.id %>_issue">
@@ -123,7 +129,3 @@
     
   </div>
 </div>
-
-
-# adjust the placeholder to hide and only display on hover for new
-
