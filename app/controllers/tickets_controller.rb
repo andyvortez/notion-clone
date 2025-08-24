@@ -15,8 +15,9 @@ class TicketsController < ApplicationController
   end
 
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket.all.includes(:keywords)
     @grouped_tickets = Ticket.includes(:category).group_by(&:category)
+
   end
 
   def update

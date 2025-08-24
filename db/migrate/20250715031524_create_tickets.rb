@@ -1,4 +1,5 @@
 class CreateTickets < ActiveRecord::Migration[7.2]
+  has_many: keywords
   def change
     create_table :tickets do |t|
       t.string :ticket_name
