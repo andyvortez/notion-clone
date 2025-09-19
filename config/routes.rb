@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     member do
       get :edit_field     # For editing existing ticket fields  
       patch :update_field # For saving existing ticket field updates
+      post :add_keyword
     end
   end
 end

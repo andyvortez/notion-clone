@@ -131,6 +131,18 @@ class TicketsController < ApplicationController
       }, status: :unprocessable_entity
     end
   end
+
+  def add_keyword
+    @ticket = Ticket.find(params[:id])
+    @keyword = Keyword.find(params[:keyword_id])
+    
+    if @ticket.keywords.include?(@keyword)
+      render plain: ""
+    else
+      @ticket.keywords << @keyword
+      render plain: "<span class='keyword-label'>#{@keyword.keyword}</span>"
+    end
+  end
   
 
   private

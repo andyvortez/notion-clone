@@ -30,15 +30,15 @@
           <thead>
             <tr>
               <th></th>
-              <th scope="col" class="title-header">Title</th>
-              <th scope="col" class="keywords-header">Keywords</th>
-              <th scope="col" class="issue-header">Issue</th>
-              <th scope="col" class="documentation-header">Documentation</th>
-              <th scope="col" class="developer-header">Developer</th>
-              <th scope="col" class="story-points-header">Story Points</th>
-              <th scope="col" class="accurate-header">Accurate?</th>
-              <th scope="col" class="commit-url-header">Commit URL</th>
-              <th scope="col" class="date-header">Date</th>
+              <th scope="col" class="title-header col">Title</th>
+              <th scope="col" class="keywords-header col">Keywords</th>
+              <th scope="col" class="issue-header col">Issue</th>
+              <th scope="col" class="documentation-header col">Documentation</th>
+              <th scope="col" class="developer-header col">Developer</th>
+              <th scope="col" class="story-points-header col">Story Points</th>
+              <th scope="col" class="accurate-header col">Accurate?</th>
+              <th scope="col" class="commit-url-header col">Commit URL</th>
+              <th scope="col" class="date-header col">Date</th>
             </tr>
           </thead>
           <tbody class="body">
@@ -56,10 +56,12 @@
                 </td>
                 <td>
                   <turbo-frame id="ticket_<%= t.id %>_ticket_keywords">
-                    <div class="cell-display" style="gap: 5px; display: flex; flex-direction: row; overflow-hidden;">
+                    <div class="cell-display keywords-cell" data-controller="keyword-selector" 
+                    data-action="click->keyword-selector#showDropdown" 
+                    data-keyword-selector-all-keywords-value="<%= @all_keywords.to_json %>">
                       <% if t.keywords.present? %>
                         <% t.keywords.each do |k| %>
-                          <span class="keyword-label" style="display: flex; padding: 0 6px; background-color: rgb(161, 80, 80); border-radius: 6px;"><%= k.keyword %></span>
+                          <span class="keyword-label"><%= k.keyword %></span>
                         <% end %>
                       <% end %>
                     </div>
