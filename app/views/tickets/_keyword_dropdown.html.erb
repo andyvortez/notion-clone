@@ -1,0 +1,3 @@
+<div class="keywords-dropdown">
+  <%= f.collection_select :keyword_ids, Keyword.all, :id, :keyword, { prompt: "Choose a keyword" }, { class: "form-select", multiple: true, style: "width: 120px;" } %>
+</div>

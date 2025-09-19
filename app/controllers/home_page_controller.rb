@@ -4,5 +4,6 @@ class HomePageController < ApplicationController
   def index
     @tickets = Ticket.all
     @category = Category.all
+    @all_keywords = Keyword.all
   end
 end

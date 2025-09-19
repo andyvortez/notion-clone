@@ -2,6 +2,14 @@ html, body {
   background-color: #191919 !important;
 }
 
+body.dropdown-active {
+  pointer-events: none;
+}
+
+body.dropdown-active .keyword-dropdown {
+  pointer-events: auto;
+}
+
 * {
   color: rgba(255, 255, 255, 0.81);
 }
@@ -104,13 +112,17 @@ backdrop-filter: blur(10px);
   
       td, th, tr {
         background-color: #191919 !important;
-        color: rgba(255, 255, 255, 0.81) !important;
+        color: rgba(255, 255, 255, 0.81);
         border-color: #2F2F2F !important;
         width: 100px;
         max-width: 100px;
         white-space: nowrap;
         overflow: hidden;
         font-size: 14px;
+      }
+
+      .col {
+        color: rgba(255, 255, 255, 0.46);
       }
 
       .title-header {
@@ -187,3 +199,45 @@ backdrop-filter: blur(10px);
     }
   }
 }
+.cell-display {
+  display: flex; 
+  flex-direction: row; 
+  overflow: hidden;
+  color: white;
+  gap: 5px;
+
+  .keyword-label {
+    background-color: rgb(161, 80, 80) !important;
+    padding: 0 2px;
+    border: 1px solid inherit;
+    border-radius: 6px;
+    padding: 2px 6px;
+  }
+}
+
+.keywords-cell {
+  position: relative;
+}
+
+.keyword-dropdown .dropdown-container {
+  background: rgb(37, 37, 37);
+  border: 1px solid rbg(37, 37, 37);
+  border-radius: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  min-width: 150px;
+  padding: 15px 12px 10px 12px;
+}
+
+.keyword-dropdown .keyword-option {
+  display: flex;
+  padding: 0 6px;
+  cursor: pointer;
+  width: fit-content;
+  margin-bottom: 5px;
+  font-size: 14px;
+  background-color: rgb(161, 80, 80);
+  border: 1px solid inherit;
+  border-radius: 6px;
+}
+
