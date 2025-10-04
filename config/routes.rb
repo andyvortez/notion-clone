@@ -17,7 +17,8 @@ Rails.application.routes.draw do
 
   resources :tickets do
     collection do
-      get :new_field      # For creating new ticket fields
+      get :new_field  
+      get :new   # For creating new ticket fields
       post :create_field  # For saving new ticket fields
     end
     
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
       get :edit_field     # For editing existing ticket fields  
       patch :update_field # For saving existing ticket field updates
       post :add_keyword
+      delete :delete_keyword
     end
   end
 end

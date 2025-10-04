@@ -4,7 +4,7 @@ class TicketsController < ApplicationController
   def create
     @ticket = Ticket.new(ticket_params)
     if @ticket.save
-      redirect_to root_path
+      redirect_to root_path, notice: "Ticket created successfully"
     else
       render "new"
     end
@@ -12,6 +12,17 @@ class TicketsController < ApplicationController
 
   def new
     @ticket = Ticket.new
+    @field_name = params[:field]
+    @frame_id = params[:frame_id]
+
+    respond_to do |format|
+      format.html { render partial: 'form', locals: { 
+        ticket: @ticket, 
+        field_name: @field_name, 
+        frame_id: @frame_id 
+      }, layout: false }
+      format.turbo_stream
+    end
   end
 
   def index
@@ -54,6 +65,7 @@ class TicketsController < ApplicationController
       frame_id: @frame_id 
     }
   end
+
   
   def edit_field
     @ticket = Ticket.find(params[:id])
@@ -140,8 +152,16 @@ class TicketsController < ApplicationController
       render plain: ""
     else
       @ticket.keywords << @keyword
-      render plain: "<span class='keyword-label'>#{@keyword.keyword}</span>"
+      render plain: "<span class='keyword-label' style='background-color: #{@keyword.background_color};' data-keyword-id='#{@keyword.id}'>#{@keyword.keyword}</span>"
     end
+  end
+
+  def delete_keyword
+    @ticket = Ticket.find(params[:id])
+    @keyword = Keyword.find(params[:keyword_id])
+    @ticket.keywords.delete(@keyword)
+
+    head :ok
   end
   
 
@@ -149,24 +169,28 @@ class TicketsController < ApplicationController
 
   def ticket_params
     field_name = params[:field_name]
+    if field_name.blank?
+      params.require(:ticket).permit(:ticket_name, :issue, :documentation, :developer, :story_points, :accurate, :commit, :category_id, keyword_ids: [])
+    else
   
     # Only permit the specific field being edited
-    case field_name
-    when 'issue'
-      params.require(:ticket).permit(:issue)
-    when 'documentation' 
-      params.require(:ticket).permit(:documentation)
-    when 'developer'
-      params.require(:ticket).permit(:developer)
-    when 'ticket_name'
-      params.require(:ticket).permit(:ticket_name)
-    when 'story_points'
-      params.require(:ticket).permit(:story_points)
-    when 'commit'
-      params.require(:ticket).permit(:commit)
-    else
-      # Fallback - permit all fields
-      params.require(:ticket).permit(:ticket_name, :issue, :documentation, :developer, :story_points, :accurate, :commit)
+      case field_name
+      when 'issue'
+        params.require(:ticket).permit(:issue)
+      when 'documentation' 
+        params.require(:ticket).permit(:documentation)
+      when 'developer'
+        params.require(:ticket).permit(:developer)
+      when 'ticket_name'
+        params.require(:ticket).permit(:ticket_name)
+      when 'story_points'
+        params.require(:ticket).permit(:story_points)
+      when 'commit'
+        params.require(:ticket).permit(:commit)
+      else
+        # Fallback - permit all fields
+        params.require(:ticket).permit(:ticket_name, :issue, :documentation, :developer, :story_points, :accurate, :commit)
+      end
     end
   end
 end
