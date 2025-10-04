@@ -58,10 +58,12 @@
                   <turbo-frame id="ticket_<%= t.id %>_ticket_keywords">
                     <div class="cell-display keywords-cell" data-controller="keyword-selector" 
                     data-action="click->keyword-selector#showDropdown" 
+                    data-keyword-selector-current-keywords-value="<%= t.keywords.to_json %>"
+                    data-keyword-selector-remove-keyword-value="<%= t.keywords.to_json %>"
                     data-keyword-selector-all-keywords-value="<%= @all_keywords.to_json %>">
                       <% if t.keywords.present? %>
                         <% t.keywords.each do |k| %>
-                          <span class="keyword-label"><%= k.keyword %></span>
+                          <span class="keyword-label" data-keyword-id="<%= k.id %>" style="background-color: <%= k.background_color %>"><%= k.keyword %></span>
                         <% end %>
                       <% end %>
                     </div>
@@ -126,8 +128,9 @@
           </tbody>
         </table>
       </div>
-      <%= link_to "New Ticket", '/tickets/new', class: "new-ticket-btn" %>
+      <button class="new-ticket-btn open-slider">New Ticket</button>
     <% end %>
+    <%= render 'tickets/form' %>
     
   </div>
 </div>

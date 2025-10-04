@@ -1,44 +1,47 @@
-<%= form_for @ticket do |f| %>
-  <div class="form-group" style="gap: 20px;">
-      <%= f.label "Ticket Name" %>
-      <%= f.text_field :ticket_name %>
-    <br>
-    <br>
-    <%= f.label :keyword_ids, "Keywords" %>
-    <%= f.collection_select :keyword_ids, Keyword.all, :id, :keyword, { prompt: "Choose a keyword" }, { class: "form-select", multiple: true, style: "width: 120px;" } %>
-    <br>
-    <br>
-    <%= f.label "Issue" %>
-    <%= f.text_field :issue %>
-    <br>
-    <br>
-    <%= f.label "Documentation" %>
-    <%= f.text_field :documentation %>
-    <br>
-    <br>
-    <%= f.label "developer" %>
-    <%= f.text_field :developer %>
-    <br>
-    <br>
-    <%= f.label "story points" %>
-    <%= f.text_field :story_points %>
-    <br>
-    <br>
-    <%= f.label "accurate" %>
-    <%= f.text_field :accurate %>
-    <br>
-    <br>
-    <%= f.label "commit" %>
-    <%= f.text_field :commit %>
-    <br>
-    <br>
+<div class="form-slider-container" style="display: none;" id="form-slider">
+  <%= form_for Ticket.new do |f| %>
+    <div class="form-group" style="gap: 20px;">
+        <%= f.label "Ticket Name" %>
+        <%= f.text_field :ticket_name %>
+      <br>
+      <br>
+      <%= f.label :keyword_ids, "Keywords" %>
+      <%= f.collection_select :keyword_ids, Keyword.all, :id, :keyword, { prompt: "Choose a keyword" }, { class: "form-select", multiple: true, style: "width: 120px;" } %>
+      <br>
+      <br>
+      <%= f.label "Issue" %>
+      <%= f.text_field :issue %>
+      <br>
+      <br>
+      <%= f.label "Documentation" %>
+      <%= f.text_field :documentation %>
+      <br>
+      <br>
+      <%= f.label "developer" %>
+      <%= f.text_field :developer %>
+      <br>
+      <br>
+      <%= f.label "story points" %>
+      <%= f.text_field :story_points %>
+      <br>
+      <br>
+      <%= f.label "accurate" %>
+      <%= f.text_field :accurate %>
+      <br>
+      <br>
+      <%= f.label "commit" %>
+      <%= f.text_field :commit %>
+      <br>
+      <br>
 
-    <%= f.label :category_id, "Category" %>
-    <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: "Choose a category" }, { class: "form-select" } %>
-    
-  </div>
-  <br>
-  <br>
-  <%= f.submit "Save", class: "save-btn" %>
-  <%= link_to "Return Home", root_path, class: "return-home" %>
-<% end %>
+      <%= f.label :category_id, "Category" %>
+      <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: "Choose a category" }, { class: "form-select" } %>
+      
+    </div>
+    <br>
+    <br>
+    <%= f.submit "Save", class: "save-btn" %>
+    <%= link_to "Return Home", root_path, class: "return-home" %>
+  <% end %>
+  <button id="close-slider">Close</button>
+</div>
