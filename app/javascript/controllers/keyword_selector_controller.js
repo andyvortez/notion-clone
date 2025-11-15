@@ -6,7 +6,6 @@ export default class extends Controller {
   connect() {
     this.turboFrame = this.element.parentElement
     //const element = this.element
-    this.selectColor()
   }
 
   selectColor() {

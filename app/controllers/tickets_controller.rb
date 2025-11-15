@@ -163,6 +163,22 @@ class TicketsController < ApplicationController
 
     head :ok
   end
+
+  def update_developer
+    @ticket = Ticket.find(params[:id])
+    if @ticket.update(developer: params[:developer])
+      render plain: params[:developer]
+    else
+      head :unprocessable_entity
+    end
+  end
+
+  def remove_developer
+    @ticket = Ticket.find(params[:id])
+    @ticket.update(developer: nil)
+    head :ok
+  end
+
   
 
   private
