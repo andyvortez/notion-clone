@@ -83,7 +83,20 @@
                     </div>
                   </turbo-frame>
                 </td>
-                <td><%= t.developer %></td>
+                <td>
+                  <turbo-frame id="ticket_<%= t.id %>_developer">
+                    <div class="cell-display developer-cell" data-controller="developer-selector"
+                    data-action="click->developer-selector#showDropdown"
+                    data-developer-selector-current-developer-value="<%= t.developer || '' %>"
+                    data-developer-selector-remove-developer-value="<%= t.developer || '' %>"
+                    data-developer-selector-all-developers-value="<%= Ticket.developers.keys.to_json %>">
+                    
+                      <% if t.developer.present? %>
+                        <span class="developer-label" data-developer-name="<%= t.developer %>"><%= t.developer %></span>
+                      <% end %>
+                    </div>
+                  </turbo-frame>
+                </td>
                 <td><%= t.story_points %></td>
                 <td><%= t.accurate ? "Yes" : "No" %></td>
                 <td><%= t.commit %></td>
@@ -123,12 +136,10 @@
                 <td>&nbsp;</td>
               <% end %>
             </tr>
-
-
           </tbody>
         </table>
       </div>
-      <button class="new-ticket-btn open-slider">New Ticket</button>
+      <!-- <button class="new-ticket-btn open-slider">New Ticket</button> -->
     <% end %>
     <%= render 'tickets/form' %>
     

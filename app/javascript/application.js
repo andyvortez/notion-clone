@@ -11,8 +11,9 @@ import "controllers"
       openButtons.forEach((button) => {
         button.addEventListener('click', (e) => {
           e.preventDefault();
-          overlay.style.display = "block";
+          overlay.style.display = "flex";
           console.log('Overlay opened');
+          document.body.classList.add('slider-active')
         })
       })
 
@@ -20,6 +21,7 @@ import "controllers"
         closeButton.addEventListener('click', () => {
           overlay.style.display = 'none';
           console.log(overlay, 'none')
+          document.body.classList.remove('slider-active')
         });
       } else {
         console.log(overlay, 'did not work')

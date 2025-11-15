@@ -6,7 +6,9 @@ import { application } from "controllers/application"
 import EditableCellController from "controllers/editable_cell_controller"
 import ModalController from "controllers/modal_controller"
 import KeywordSelectorController from "controllers/keyword_selector_controller"
+import DeveloperSelectorController from "controllers/developer_selector_controller"
 
 application.register("editable-cell", EditableCellController)
 application.register("modal", ModalController)
 application.register("keyword-selector", KeywordSelectorController) 
+application.register("developer-selector", DeveloperSelectorController)

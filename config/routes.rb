@@ -27,6 +27,8 @@ Rails.application.routes.draw do
       patch :update_field # For saving existing ticket field updates
       post :add_keyword
       delete :delete_keyword
+      patch :update_developer
+      patch :remove_developer
     end
   end
 end
