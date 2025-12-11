@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_19_044659) do
+ActiveRecord::Schema[7.2].define(version: 2025_09_20_011152) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_19_044659) do
     t.string "keyword"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "background_color"
   end
 
   create_table "keywords_tickets", id: false, force: :cascade do |t|
@@ -36,7 +37,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_19_044659) do
     t.text "documentation"
     t.integer "developer"
     t.integer "story_points"
-    t.boolean "accurate"
+    t.string "accurate"
     t.text "commit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

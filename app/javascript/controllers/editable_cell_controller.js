@@ -71,6 +71,7 @@ export default class extends Controller {
         textField.setSelectionRange(textField.value.length, textField.value.length)
       }
     } else {
+      console.log("there is not a form")
       this.removeClickListener()
       this.checkForNewTicketCreation(event.target)
     }

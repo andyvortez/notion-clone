@@ -44,7 +44,7 @@
           <tbody class="body">
             <% c.tickets.each do |t| %>
               <tr class="ticket-row">
-                <td class="action-cell">
+                <td class="action-cell delete-ticket">
                   <%= link_to "✖", ticket_path(t), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete-btn" %>
                 </td>
                 <td>
@@ -97,9 +97,21 @@
                     </div>
                   </turbo-frame>
                 </td>
-                <td><%= t.story_points %></td>
+                <td>
+                  <turbo-frame id="ticket_<%= t.id %>_story_points">
+                    <div class="cell-display" data-controller="editable-cell" data-action="click->editable-cell#edit">
+                      <%= t.story_points.present? ? t.story_points : "" %>
+                    </div>
+                  </turbo-frame>
+                </td>
                 <td><%= t.accurate ? "Yes" : "No" %></td>
-                <td><%= t.commit %></td>
+                <td>
+                  <turbo-frame id="ticket_<%= t.id %>_commit">
+                    <div class="cell-display ticket-commit" data-controller="editable-cell" data-action="click->editable-cell#edit">
+                      <%= t.commit.present? ? t.commit : "" %>
+                    </div>
+                  </turbo-frame>
+                </td>
                 <td><%= t.created_at.strftime("%m/%d/%Y") %></td>
               </tr>
             <% end %>
@@ -114,7 +126,7 @@
                 </turbo-frame>
               </td>
               
-                <td>&nbsp;</td>
+              <td>&nbsp;</td>
           
               <td>
                 <turbo-frame id="new_ticket_issue_<%= c.id %>">
@@ -132,7 +144,16 @@
                   </div>
                 </turbo-frame>
               </td>
-              <% 5.times do %>
+              <td>&nbsp;</td>
+              <td>
+                <turbo-frame id="new_ticket_story_points_<%= c.id %>">
+                  <div class="cell-display"
+                      data-controller="editable-cell"
+                      data-action="click->editable-cell#edit">
+                  </div>
+                </turbo-frame>
+              </td>
+              <% 3.times do %>
                 <td>&nbsp;</td>
               <% end %>
             </tr>

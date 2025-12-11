@@ -37,6 +37,18 @@
           value: ticket.developer,
           class: "field-input inline-form-field" %>
       <%= f.submit "Save", style: "display: none;", id: "auto-submit" %>
+    <% when 'story_points' %>
+      <%= f.text_area :story_points,
+          value: ticket.story_points,
+          autofocus: true,
+          class: "field-input inline-form-field" %>
+      <%= f.submit "Save", style: "display: none;", id: "auto-submit" %>
+    <% when 'commit' %>
+      <%= f.text_area :commit,
+          value: ticket.commit,
+          autofocus: true,
+          class: "field-input inline-form-field" %>
+      <%= f.submit "Save", style: "display: none;", id: "auto-submit" %>
     <% end %>
   <% end %>
 </turbo-frame>
