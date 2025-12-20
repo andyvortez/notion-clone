@@ -36,7 +36,6 @@
               <th scope="col" class="documentation-header col">Documentation</th>
               <th scope="col" class="developer-header col">Developer</th>
               <th scope="col" class="story-points-header col">Story Points</th>
-              <th scope="col" class="accurate-header col">Accurate?</th>
               <th scope="col" class="commit-url-header col">Commit URL</th>
               <th scope="col" class="date-header col">Date</th>
             </tr>
@@ -104,7 +103,6 @@
                     </div>
                   </turbo-frame>
                 </td>
-                <td><%= t.accurate ? "Yes" : "No" %></td>
                 <td>
                   <turbo-frame id="ticket_<%= t.id %>_commit">
                     <div class="cell-display ticket-commit" data-controller="editable-cell" data-action="click->editable-cell#edit">
